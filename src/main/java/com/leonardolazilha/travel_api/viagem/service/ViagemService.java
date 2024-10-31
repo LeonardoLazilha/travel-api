@@ -8,6 +8,8 @@ import com.leonardolazilha.travel_api.viagem.exceptions.ViagemNotFoundException;
 import jakarta.persistence.Id;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,5 +32,9 @@ public class ViagemService {
         } else {
             throw new ViagemNotFoundException();
         }
+    }
+
+    public Page<ResponseViagemDTO> findAll(Pageable pageable) {
+        return viagemRepository.findAll(pageable).map(ResponseViagemDTO::fromEntity);
     }
 }
