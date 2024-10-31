@@ -3,7 +3,6 @@ package com.leonardolazilha.travel_api.controller;
 import com.leonardolazilha.travel_api.viagem.dto.CreateViagemDTO;
 import com.leonardolazilha.travel_api.viagem.dto.ResponseViagemDTO;
 import com.leonardolazilha.travel_api.viagem.service.ViagemService;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
