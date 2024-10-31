@@ -3,13 +3,13 @@ package com.leonardolazilha.travel_api.controller;
 import com.leonardolazilha.travel_api.viagem.dto.CreateViagemDTO;
 import com.leonardolazilha.travel_api.viagem.dto.ResponseViagemDTO;
 import com.leonardolazilha.travel_api.viagem.service.ViagemService;
+import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/viagens")
@@ -24,4 +24,14 @@ public class ViagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(viagem);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteViagem (@PathVariable Long id){
+        viagemService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping
+    public Page<ResponseViagemDTO> getAllViagens(Pageable pageable) {
+        return viagemService.findAll(pageable);
+    }
 }
